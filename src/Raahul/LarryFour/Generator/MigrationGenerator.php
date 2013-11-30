@@ -153,7 +153,7 @@ class MigrationGenerator
             // We check if the modifier is set and has a true value, because it is not
             // compulsory for these modifiers to be set, in which case they're assumed false.
             // However, they can also be set with a boolean value of false.
-            if ( isset($fieldData[$modifier]) && ($fieldData[$modifier]) )
+            if ( isset($fieldData[$modifier])) )
             {
                 // We use chaining to add in the modifier
                 // ->default(
