@@ -189,8 +189,15 @@ class MigrationGenerator
     private function addClassName($migrationContent, $tableName)
     {
         // Class name is the name of the table uppercased and without underscores
-        $className = 'Create' . ucwords($tableName) . 'Table';
-        $className = str_replace('_', '', $className);
+        if(count($nameComps = explode('_', $tableName)) > 1) //must uppercase all words
+        {
+            $cname = '';
+            foreach ($nameComps as $singleWord) {
+                $cname .= ucwords($singleWord);
+            }
+            $className = 'Create' . $cname . 'Table';
+        }
+        else $className = 'Create' . ucwords($tableName) . 'Table';
 
         return str_replace('{{className}}', $className, $migrationContent);
     }
